@@ -5,7 +5,7 @@ import { FormUtils } from '../form-utils';
 
 const USER = {
   email: 'usuario@ups.edu.ec',
-  password: '234567'
+  password: '123456'
 };
 
 @Component({

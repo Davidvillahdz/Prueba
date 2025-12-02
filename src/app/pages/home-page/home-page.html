@@ -1,1 +1,39 @@
-<p>home-page works!</p>
+<section class="hero">
+  @if (dataResource.isLoading()) {
+    <p>Cargando Pokémon...</p>
+  } @else if (dataResource.error()) {
+    <p>Error al cargar los datos.</p>
+  } @else {
+    <div>
+      <h1>Pokédex</h1>
+      <p>Total de registros: {{ dataResource.value()?.count }}</p>
+    </div>
+  }
+</section>
+
+<section class="pokemon-list">
+  <ul>
+    @for (pokemon of dataResource.value()?.results; track pokemon.name) {
+      <li>
+        <article>
+          <h2>{{ pokemon.name | titlecase }}</h2>
+          <button (click)="goToDetail(pokemon.url)">
+            Ver detalles
+          </button>
+        </article>
+      </li>
+    }
+  </ul>
+</section>
+
+<section class="controls">
+  <button (click)="prevPage()" [disabled]="offset() === 0">
+    ⬅ Anterior
+  </button>
+
+  <span>Página: {{ offset() / limit() + 1 }}</span>
+
+  <button (click)="nextPage()">
+    Siguiente ➡
+  </button>
+</section>
