@@ -8,11 +8,11 @@ export class PokemonService {
   private baseUrl = 'https://pokeapi.co/api/v2/pokemon';
 
   getPokemons(offset: number, limit: number) {
-    // ✔ DEVUELVE OBSERVABLE, NO PROMISE
-    return this.http.get<any>(`${this.baseUrl}?offset=${offset}&limit=${limit}`);
+
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
   }
 
-  getPokemonDetail(id: number) {
-    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  getPokemonById(id: string) {
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
   }
 }
